@@ -1,0 +1,23 @@
+{
+    "name": "black-m13/meli-payamak",
+    "description": "A simple Laravel package for integrating with Payamak SMS API.",
+    "type": "library",
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "BlackM13\\MeliPayamak\\": "src/"
+        }
+    },
+
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BlackM13\\MeliPayamak\\SmsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
