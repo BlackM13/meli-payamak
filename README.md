@@ -23,9 +23,7 @@ You can install the package via Composer. Run the following command:
 ```bash
 composer require black-m13/meli-payamak
 
-
-Usage
------
+## Usage
 
 ### Configuration
 
@@ -107,13 +105,11 @@ Copy code
 
 `$response = $smsService->getUserNumbers();`
 
-Contributing
-------------
+## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
 
-License
--------
+## License
 
 This package is licensed under the MIT License. See the LICENSE file for details.
 
