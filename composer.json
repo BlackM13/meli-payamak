@@ -1,0 +1,21 @@
+{
+  "name": "blackm13/melipayamak",
+  "description": "Laravel 10+ package for MeliPayamak SMS service",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "BlackM13\\MeliPayamak\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=8.0",
+    "illuminate/support": "^10.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "BlackM13\\MeliPayamak\\MeliPayamakServiceProvider"
+      ]
+    }
+  }
+}

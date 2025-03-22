@@ -1,10 +1,11 @@
 # SMS Service Package
 
-A simple PHP package for interacting with the Payamak SMS API to send and manage SMS messages.
+A simple PHP package for interacting with the Payamak SMS API to send and manage SMS messages effortlessly.
 
 ## Table of Contents
 
 - [Installation](#installation)
+- [Configuration](#configuration)
 - [Usage](#usage)
   - [Sending SMS](#sending-sms)
   - [Sending Multiple SMS](#sending-multiple-sms)
@@ -18,103 +19,88 @@ A simple PHP package for interacting with the Payamak SMS API to send and manage
 
 ## Installation
 
-You can install the package via Composer. Run the following command:
+Install the package via Composer:
 
 ```bash
 composer require black-m13/meli-payamak
+```
+
+## Configuration
+
+Before using the package, instantiate the `SmsService` class with your Payamak credentials:
+
+```php
+use BlackM13\MeliPayamak\SmsService;
+
+$smsService = new SmsService('your_username', 'your_password');
+```
 
 ## Usage
 
-### Configuration
-
-Before using the package, you need to instantiate the `SmsService` class with your Payamak credentials.
-
-php
-
-Copy code
-
-`use BlackM13\MeliPayamak\SmsService;  $smsService = new SmsService('your_username', 'your_password');`
-
 ### Sending SMS
 
-To send an SMS, use the `sendSMS` method.
+Send an SMS using the `sendSMS` method:
 
-php
-
-Copy code
-
-`$response = $smsService->sendSMS('09123456789', '1000', 'Your message here');`
+```php
+$response = $smsService->sendSMS('09123456789', '1000', 'Your message here');
+```
 
 ### Sending Multiple SMS
 
-To send different messages to multiple recipients, use the `sendMultipleSMS` method.
+To send different messages to multiple recipients, use `sendMultipleSMS`:
 
-php
-
-Copy code
-
-`$response = $smsService->sendMultipleSMS(     ['09123456789', '09129876543'],     '1000',     ['Message for first recipient', 'Message for second recipient'] );`
+```php
+$response = $smsService->sendMultipleSMS(
+    ['09123456789', '09129876543'],
+    '1000',
+    ['Message for first recipient', 'Message for second recipient']
+);
+```
 
 ### Getting Delivery Status
 
-To check the delivery status of a sent SMS, use the `getDeliveryStatus` method with the `recID` you received during sending.
+Check the delivery status of a sent SMS using `getDeliveryStatus` with the `recID` received during sending:
 
-php
-
-Copy code
-
-`$response = $smsService->getDeliveryStatus('recID');`
+```php
+$response = $smsService->getDeliveryStatus('recID');
+```
 
 ### Retrieving Messages
 
-To get a list of sent or received messages, use the `getMessages` method.
+Get a list of sent or received messages using `getMessages`. Use `2` for sent messages:
 
-php
-
-Copy code
-
-`$response = $smsService->getMessages(2); // 2 for sent messages`
+```php
+$response = $smsService->getMessages(2);
+```
 
 ### Checking Credit
 
-To check your SMS credit, use the `getCredit` method.
+Retrieve your SMS credit balance with `getCredit`:
 
-php
-
-Copy code
-
-`$response = $smsService->getCredit();`
+```php
+$response = $smsService->getCredit();
+```
 
 ### Getting Base Price
 
-To retrieve the base price for SMS, use the `getBasePrice` method.
+Retrieve the base price for sending SMS using `getBasePrice`:
 
-php
-
-Copy code
-
-`$response = $smsService->getBasePrice();`
+```php
+$response = $smsService->getBasePrice();
+```
 
 ### Getting User Numbers
 
-To get a list of your dedicated numbers, use the `getUserNumbers` method.
+Get a list of your dedicated numbers using `getUserNumbers`:
 
-php
-
-Copy code
-
-`$response = $smsService->getUserNumbers();`
+```php
+$response = $smsService->getUserNumbers();
+```
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request.
+Contributions are welcome! If you encounter issues or have suggestions, feel free to open an issue or submit a pull request.
 
 ## License
 
-This package is licensed under the MIT License. See the LICENSE file for details.
-
-sql
-
-Copy code
-
-``You can copy this content directly into your `README.md` file. Let me know if you need any more adjustments!``
+This package is licensed under the MIT License. See the `LICENSE` file for details.
