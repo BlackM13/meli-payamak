@@ -25,14 +25,24 @@ Install the package via Composer:
 composer require black-m13/meli-payamak
 ```
 
-## Configuration
+### Register Service Provider (Laravel 10+)
 
-Before using the package, instantiate the `SmsService` class with your Payamak credentials:
+The service provider is automatically registered via Laravel's package discovery. However, if needed, manually add it in `config/app.php`:
 
 ```php
-use BlackM13\MeliPayamak\SmsService;
+'providers' => [
+    BlackM13\MeliPayamak\SmsServiceProvider::class,
+],
+```
 
-$smsService = new SmsService('your_username', 'your_password');
+### Alias the Facade
+
+Add the alias in `config/app.php` to use `SmsService` statically:
+
+```php
+'aliases' => [
+    'SmsService' => BlackM13\MeliPayamak\Facades\SmsService::class,
+],
 ```
 
 ## Usage
@@ -42,7 +52,9 @@ $smsService = new SmsService('your_username', 'your_password');
 Send an SMS using the `sendSMS` method:
 
 ```php
-$response = $smsService->sendSMS('09123456789', '1000', 'Your message here');
+use SmsService;
+
+$response = SmsService::sendSMS('09123456789', '1000', 'Your message here');
 ```
 
 ### Sending Multiple SMS
@@ -50,7 +62,7 @@ $response = $smsService->sendSMS('09123456789', '1000', 'Your message here');
 To send different messages to multiple recipients, use `sendMultipleSMS`:
 
 ```php
-$response = $smsService->sendMultipleSMS(
+$response = SmsService::sendMultipleSMS(
     ['09123456789', '09129876543'],
     '1000',
     ['Message for first recipient', 'Message for second recipient']
@@ -62,7 +74,7 @@ $response = $smsService->sendMultipleSMS(
 Check the delivery status of a sent SMS using `getDeliveryStatus` with the `recID` received during sending:
 
 ```php
-$response = $smsService->getDeliveryStatus('recID');
+$response = SmsService::getDeliveryStatus('recID');
 ```
 
 ### Retrieving Messages
@@ -70,7 +82,7 @@ $response = $smsService->getDeliveryStatus('recID');
 Get a list of sent or received messages using `getMessages`. Use `2` for sent messages:
 
 ```php
-$response = $smsService->getMessages(2);
+$response = SmsService::getMessages(2);
 ```
 
 ### Checking Credit
@@ -78,7 +90,7 @@ $response = $smsService->getMessages(2);
 Retrieve your SMS credit balance with `getCredit`:
 
 ```php
-$response = $smsService->getCredit();
+$response = SmsService::getCredit();
 ```
 
 ### Getting Base Price
@@ -86,7 +98,7 @@ $response = $smsService->getCredit();
 Retrieve the base price for sending SMS using `getBasePrice`:
 
 ```php
-$response = $smsService->getBasePrice();
+$response = SmsService::getBasePrice();
 ```
 
 ### Getting User Numbers
@@ -94,7 +106,7 @@ $response = $smsService->getBasePrice();
 Get a list of your dedicated numbers using `getUserNumbers`:
 
 ```php
-$response = $smsService->getUserNumbers();
+$response = SmsService::getUserNumbers();
 ```
 
 ## Contributing
